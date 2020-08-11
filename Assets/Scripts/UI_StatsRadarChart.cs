@@ -7,7 +7,7 @@ public class UI_StatsRadarChart : MonoBehaviour
     [SerializeField]
     private Material radarMaterial;
 
-    private Stats stats;
+    public Stats stats;
     private CanvasRenderer raderMeshCanvasRenderer;
 
     private void Awake()
@@ -31,52 +31,47 @@ public class UI_StatsRadarChart : MonoBehaviour
     {
         Mesh mesh = new Mesh();
 
-        Vector3[] vertices = new Vector3[6];
-        Vector2[] uv = new Vector2[6];
-        int[] triangles = new int[3 * 5];
+        Vector3[] vertices = new Vector3[5];
+        Vector2[] uv = new Vector2[5];
+        int[] triangles = new int[3 * 4];
 
-        float angleIncrement = 360f / 5;
-        float radarChartSize = 99f;
+        float angleIncrement = 360f / 4;
+        float radarChartSize = 99f-6.5f;
 
-        Vector3 attackVertex = Quaternion.Euler(0, 0, -angleIncrement * 0) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Attack);
-        int attackVertexIndex = 1;
-        Vector3 defenceVertex = Quaternion.Euler(0, 0, -angleIncrement * 1) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Defence);
-        int defenceVertexIndex = 2;
-        Vector3 speedVertex = Quaternion.Euler(0, 0, -angleIncrement * 2) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Speed);
-        int speedVertexIndex = 3;
-        Vector3 manaVertex = Quaternion.Euler(0, 0, -angleIncrement * 3) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Mana);
-        int manaVertexIndex = 4;
-        Vector3 healthVertex = Quaternion.Euler(0, 0, -angleIncrement * 4) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Health);
-        int healthVertexIndex = 5;
+        Vector3 DistanceVertex = Quaternion.Euler(0, 0, -angleIncrement * 0) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Distance);
+        int DistanceVertexIndex = 1;
+        Vector3 BFVertex = Quaternion.Euler(0, 0, -angleIncrement * 1) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.BF);
+        int BFVertexIndex = 2;
+        Vector3 LRVertex = Quaternion.Euler(0, 0, -angleIncrement * 2) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.LR);
+        int LRVertexIndex = 3;
+        Vector3 HitVertex = Quaternion.Euler(0, 0, -angleIncrement * 3) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Hit);
+        int HitVertexIndex = 4;
+
 
         vertices[0] = Vector3.zero;
-        vertices[attackVertexIndex] = attackVertex;
-        vertices[defenceVertexIndex] = defenceVertex;
-        vertices[speedVertexIndex] = speedVertex;
-        vertices[manaVertexIndex] = manaVertex;
-        vertices[healthVertexIndex] = healthVertex;
+        vertices[DistanceVertexIndex] = DistanceVertex;
+        vertices[BFVertexIndex] = BFVertex;
+        vertices[LRVertexIndex] = LRVertex;
+        vertices[HitVertexIndex] = HitVertex;
+
 
         triangles[0] = 0;
-        triangles[1] = attackVertexIndex;
-        triangles[2] = defenceVertexIndex;
+        triangles[1] = DistanceVertexIndex;
+        triangles[2] = BFVertexIndex;
 
         triangles[3] = 0;
-        triangles[4] = defenceVertexIndex;
-        triangles[5] = speedVertexIndex;
+        triangles[4] = BFVertexIndex;
+        triangles[5] = LRVertexIndex;
 
         triangles[6] = 0;
-        triangles[7] = speedVertexIndex;
-        triangles[8] = manaVertexIndex;
+        triangles[7] = LRVertexIndex;
+        triangles[8] = HitVertexIndex;
 
         triangles[9] = 0;
-        triangles[10] = manaVertexIndex;
-        triangles[11] = healthVertexIndex;
+        triangles[10] = HitVertexIndex;
+        triangles[11] = DistanceVertexIndex;
 
-        triangles[12] = 0;
-        triangles[13] = healthVertexIndex;
-        triangles[14] = attackVertexIndex;
 
-        
 
         mesh.vertices = vertices;
         mesh.uv = uv;
@@ -84,7 +79,7 @@ public class UI_StatsRadarChart : MonoBehaviour
 
         raderMeshCanvasRenderer.SetMesh(mesh);
         raderMeshCanvasRenderer.SetMaterial(radarMaterial, null);
-        //transform.Find("attackBar").localScale = new Vector3(1, stats.GetStatAmountNormalized(Stats.Type.Attack));
-        //transform.Find("defenceBar").localScale = new Vector3(1, stats.GetStatAmountNormalized(Stats.Type.Defence));
+        //transform.Find("DistanceBar").localScale = new Vector3(1, stats.GetStatAmountNormalized(Stats.Type.Distance));
+        //transform.Find("BFBar").localScale = new Vector3(1, stats.GetStatAmountNormalized(Stats.Type.BF));
     }
 }

@@ -15,10 +15,11 @@ public class Testing : MonoBehaviour
     }
     private void Start()
     {
-        Stats stats = new Stats(10, 2, 5, 10, 3);
+        Stats stats = new Stats(ds.ballDistace, ds.BF, ds.LR, ds.hitCount/5.0f);
 
         uiStatsRadarChart.SetStats(stats);
-
+        Debug.Log(uiStatsRadarChart.stats.GetStatAmountNormalized(Stats.Type.Distance));
+        /*
         CMDebug.ButtonUI(new Vector2(100, 20), "ATK++", () => stats.IncreaseStatAmount(Stats.Type.Attack));
         CMDebug.ButtonUI(new Vector2(100, -20), "ATK--", () => stats.DecreaseStatAmount(Stats.Type.Attack));
 
@@ -33,6 +34,7 @@ public class Testing : MonoBehaviour
 
         CMDebug.ButtonUI(new Vector2(500, 20), "HEL++", () => stats.IncreaseStatAmount(Stats.Type.Health));
         CMDebug.ButtonUI(new Vector2(500, -20), "HEL--", () => stats.DecreaseStatAmount(Stats.Type.Health));
+        */
         Debug.Log("Distance: "+ds.ballDistace);
         Debug.Log("LR: "+ds.LR);
         Debug.Log("Bf: "+ds.BF);

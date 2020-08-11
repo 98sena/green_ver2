@@ -6,30 +6,29 @@ using UnityEngine;
 public class Stats
 {
     public event EventHandler OnStatsChanged; //값이 바뀔 때만 UI 변경
-    public static int STAT_MIN = 0;
-    public static int STAT_MAX = 20;
+    public static float STAT_MIN = 0;
+    public static float STAT_MAX = 1;
 
     public enum Type
     {
-        Attack,
-        Defence,
-        Speed,
-        Mana,
-        Health,
+        Distance,
+        BF,
+        LR,
+        Hit,
     }
-    private SingleStat attackStat;
-    private SingleStat defenceStat;
-    private SingleStat speedStat;
-    private SingleStat manaStat;
-    private SingleStat healthStat;
+    private SingleStat DistanceStat;
+    private SingleStat BFStat;
+    private SingleStat LRStat;
+    private SingleStat HitStat;
 
-    public Stats(int attackStatAmount, int defenceStatAmount, int speedStatAmount, int manaStatAmount, int healthStatAmount)
+
+    public Stats(float DistanceStatAmount, float BFStatAmount, float LRStatAmount, float HitStatAmount)
     {
-        attackStat = new SingleStat(attackStatAmount);
-        defenceStat = new SingleStat(defenceStatAmount);
-        speedStat = new SingleStat(speedStatAmount);
-        manaStat = new SingleStat(manaStatAmount);
-        healthStat = new SingleStat(healthStatAmount);
+        DistanceStat = new SingleStat(DistanceStatAmount);
+        BFStat = new SingleStat(BFStatAmount);
+        LRStat = new SingleStat(LRStatAmount);
+        HitStat = new SingleStat(HitStatAmount);
+
 
     }
 
@@ -38,11 +37,11 @@ public class Stats
         switch (statType)
         {
             default:
-            case Type.Attack: return attackStat;
-            case Type.Defence: return defenceStat;
-            case Type.Speed: return speedStat;
-            case Type.Mana: return manaStat;
-            case Type.Health: return healthStat;
+            case Type.Distance: return DistanceStat;
+            case Type.BF: return BFStat;
+            case Type.LR: return LRStat;
+            case Type.Hit: return HitStat;
+
 
         }
     }
@@ -52,7 +51,7 @@ public class Stats
 
         if (OnStatsChanged != null) OnStatsChanged(this, EventArgs.Empty);
     }
-
+    /*
     public void IncreaseStatAmount(Type statType)
     {
         SetStatAmount(statType, GetStatAmount(statType) + 1);
@@ -63,7 +62,8 @@ public class Stats
     {
         SetStatAmount(statType, GetStatAmount(statType) - 1);
     }
-    public int GetStatAmount(Type statType)
+    */
+    public float GetStatAmount(Type statType)
     {
         return GetSingleStat(statType).GetStatAmount();
     }
@@ -76,19 +76,19 @@ public class Stats
      * */
     private class SingleStat
     {
-        private int stat;
+        private float stat;
 
-        public SingleStat(int statAmount)
+        public SingleStat(float statAmount)
         {
             SetStatAmount(statAmount);
         }
-        public void SetStatAmount(int statAmount)
+        public void SetStatAmount(float statAmount)
         {
             stat = Mathf.Clamp(statAmount, STAT_MIN, STAT_MAX); //최대/최소 값 범위 넘어가지 않게
 
         }
 
-        public int GetStatAmount()
+        public float GetStatAmount()
         {
             return stat;
         }

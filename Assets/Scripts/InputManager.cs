@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour
             Debug.Log(slider.value + "랄라");
             golfBall.transform.position = new Vector3(golfBall.transform.position.x, golfBall.transform.position.y, (-80.0f)+slider.value * staticDistance);
             camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, (-90.0f) + slider.value * staticDistance);
-            curDistance =80.0f - slider.value * staticDistance;
+            curDistance =1-slider.value;
         }
 
         if(slider.name == "LRSlope")
@@ -57,7 +57,7 @@ public class InputManager : MonoBehaviour
 
             green.transform.rotation = Quaternion.Euler(new Vector3((BFSlope.value - 0.5f) * 5f, 0f, (slider.value-0.5f)*10f) );
 
-            LR = slider.value - 0.5f;
+            LR = slider.value;
         }
 
         if (slider.name == "BFSlope")
@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour
 
             green.transform.rotation = Quaternion.Euler(new Vector3((slider.value - 0.5f) * 5f, 0f, (LRSlope.value - 0.5f) * 10f));
 
-            BF = slider.value - 0.5f;
+            BF = slider.value;
         }
 
         //Debug.Log(slider.name)
