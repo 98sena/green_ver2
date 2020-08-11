@@ -7,7 +7,12 @@ public class Testing : MonoBehaviour
 {
     [SerializeField]
     private UI_StatsRadarChart uiStatsRadarChart;
+    DataStorage ds;
 
+    private void Awake()
+    {
+        ds = FindObjectOfType<DataStorage>();
+    }
     private void Start()
     {
         Stats stats = new Stats(10, 2, 5, 10, 3);
@@ -28,5 +33,9 @@ public class Testing : MonoBehaviour
 
         CMDebug.ButtonUI(new Vector2(500, 20), "HEL++", () => stats.IncreaseStatAmount(Stats.Type.Health));
         CMDebug.ButtonUI(new Vector2(500, -20), "HEL--", () => stats.DecreaseStatAmount(Stats.Type.Health));
+        Debug.Log("Distance: "+ds.ballDistace);
+        Debug.Log("LR: "+ds.LR);
+        Debug.Log("Bf: "+ds.BF);
+        Debug.Log("hitCnt: "+ds.hitCount);
     }
 }

@@ -20,7 +20,10 @@ public class InputManager : MonoBehaviour
 
 
 
-    float distance = (-29.49f) + (80.0f);
+    float staticDistance = (-29.49f) + (80.0f);
+    public float curDistance = 0f;
+    public float LR;
+    public float BF;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +41,9 @@ public class InputManager : MonoBehaviour
         if (slider.name == "WideLength")
         {
             Debug.Log(slider.value + "랄라");
-            golfBall.transform.position = new Vector3(golfBall.transform.position.x, golfBall.transform.position.y, (-80.0f)+slider.value * distance);
-            camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, (-90.0f) + slider.value * distance);
-          
+            golfBall.transform.position = new Vector3(golfBall.transform.position.x, golfBall.transform.position.y, (-80.0f)+slider.value * staticDistance);
+            camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, (-90.0f) + slider.value * staticDistance);
+            curDistance =80.0f - slider.value * staticDistance;
         }
 
         if(slider.name == "LRSlope")
@@ -53,8 +56,8 @@ public class InputManager : MonoBehaviour
             golfBall.transform.position = ballPlace.transform.position;
 
             green.transform.rotation = Quaternion.Euler(new Vector3((BFSlope.value - 0.5f) * 5f, 0f, (slider.value-0.5f)*10f) );
-          
 
+            LR = slider.value - 0.5f;
         }
 
         if (slider.name == "BFSlope")
@@ -67,7 +70,8 @@ public class InputManager : MonoBehaviour
             golfBall.transform.position = ballPlace.transform.position;
 
             green.transform.rotation = Quaternion.Euler(new Vector3((slider.value - 0.5f) * 5f, 0f, (LRSlope.value - 0.5f) * 10f));
-            
+
+            BF = slider.value - 0.5f;
         }
 
         //Debug.Log(slider.name)
