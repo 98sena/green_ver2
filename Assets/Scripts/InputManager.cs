@@ -55,7 +55,7 @@ public class InputManager : MonoBehaviour
             //golfBall.transform.position = new Vector3(golfBall.transform.position.x, 6.25f - (slider.value - 0.5f)*0.1f, golfBall.transform.position.z);
             golfBall.transform.position = ballPlace.transform.position;
 
-            green.transform.rotation = Quaternion.Euler(new Vector3((BFSlope.value - 0.5f) * 5f, 0f, (slider.value-0.5f)*10f) );
+            green.transform.rotation = Quaternion.Euler(new Vector3((BFSlope.value - 0.5f) * 1f, 0f, (slider.value-0.5f)*2f) );
 
             LR = slider.value;
         }
@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour
             //golfBall.transform.position = new Vector3(golfBall.transform.position.x, 6.25f + (slider.value - 0.5f)*7f, golfBall.transform.position.z);
             golfBall.transform.position = ballPlace.transform.position;
 
-            green.transform.rotation = Quaternion.Euler(new Vector3((slider.value - 0.5f) * 5f, 0f, (LRSlope.value - 0.5f) * 10f));
+            green.transform.rotation = Quaternion.Euler(new Vector3((slider.value - 0.5f) * 1f, 0f, (LRSlope.value - 0.5f) * 2f));
 
             BF = slider.value;
         }
