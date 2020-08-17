@@ -22,7 +22,7 @@ public class GetPower : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (pm.state == Progress.StateLevel.Ready)
         {
-            Debug.Log("Ready Checked");
+            //Debug.Log("Ready Checked");
             swingPower();
         }
     }
@@ -32,7 +32,7 @@ public class GetPower : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (powerCheck)
         {
             power += 0.5f;
-            Debug.Log("power on");
+            //Debug.Log("power on");
         }
     }
 

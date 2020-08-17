@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour
     {
         if (slider.name == "WideLength")
         {
-            Debug.Log(slider.value + "랄라");
+            //Debug.Log(slider.value + "랄라");
             golfBall.transform.position = new Vector3(golfBall.transform.position.x, golfBall.transform.position.y, (-80.0f)+slider.value * staticDistance);
             camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y, (-90.0f) + slider.value * staticDistance);
             curDistance =1-slider.value;
@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
 
         if(slider.name == "LRSlope")
         {
-            Debug.Log("LRSlope" + slider.value);
+            //Debug.Log("LRSlope" + slider.value);
             //camera.transform.position = new Vector3(camera.transform.position.x, (9.5f) + (slider.value - 0.5f) * 0.1f, camera.transform.position.z);
             camera.transform.position = camPlace.transform.position;
 
@@ -65,7 +65,7 @@ public class InputManager : MonoBehaviour
             Debug.Log("BFSlope" + slider.value);
             //camera.transform.position = new Vector3(camera.transform.position.x, (9.5f) + (slider.value - 0.5f) * 7f, camera.transform.position.z);
             camera.transform.position = camPlace.transform.position;
-            camera.transform.rotation = camPlace.transform.rotation;
+            //camera.transform.rotation = camPlace.transform.rotation;
 
             //golfBall.transform.position = new Vector3(golfBall.transform.position.x, 6.25f + (slider.value - 0.5f)*7f, golfBall.transform.position.z);
             golfBall.transform.position = ballPlace.transform.position;

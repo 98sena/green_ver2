@@ -99,12 +99,15 @@ public class PracticeMode : Progress
         Debug.Log("ready");
         if (gp.getInput == 2)
         {
+            Debug.Log(gp.power);
+
             //ball.transform.GetComponent<Rigidbody>().isKinematic = false;
             nextState();
         }
     }
     public override void rollState()
     {
+        //Debug.Log(gp.power);
         if (gp.getInput == 3)
         {
             gp.getInput = 0;
