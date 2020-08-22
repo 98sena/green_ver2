@@ -13,7 +13,6 @@ public class BollMove : MonoBehaviour
 
     public GameObject targetPlace;
     Vector3 tarPos;
-    float tX = 0f, ty = 0f, tz = 0f;
     float tan;
 
     public PracticeMode pm;
@@ -25,14 +24,16 @@ public class BollMove : MonoBehaviour
     int cnt = 0;
     float friction = 0.7f;
 
-    public GameObject stick;
-    Vector3 stickRot;
+    //public GameObject normGroup;
+    public GameObject[]normVecs;
+
     Vector3 gravity = new Vector3(0, 9.8f, 0);
+
+    Vector3 side1, side2, perp;
     // Start is called before the first frame update
     void Start()
     { 
         rb = transform.gameObject.GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
@@ -44,7 +45,12 @@ public class BollMove : MonoBehaviour
             //Debug.Log(tarPos + "              WOOWWWWWWWWWWWWWWWWWWW");
             tan =(tarPos.y - transform.position.y) / (tarPos.z - transform.position.z);
             //stickRot = Quaternion.Euler(stick.transform.rotation.x,stick.transform.rotation.y,stick.transform.rotation.z);
-            stickRot = stick.transform.rotation.eulerAngles;
+            //stickRot = stick.transform.rotation.eulerAngles;
+            side1 = normVecs[1].transform.position - normVecs[0].transform.position;
+            side2 = normVecs[2].transform.position - normVecs[0].transform.position;
+            perp = Vector3.Cross(side1, side2);
+            perp = perp.normalized;
+            Debug.Log("yayayayayyaayayayayayayay    "+perp);
         }
         if (pm.state == Progress.StateLevel.Roll)
         {
@@ -68,8 +74,14 @@ public class BollMove : MonoBehaviour
                 return;
             }
             cnt++;
+            Debug.Log("vecs                                                                                       " + perp);
+
+            Debug.Log("0 gppower " + gp.power);
+
             velocity = new Vector3(velocity.x, velocity.y, gp.power);
-            Vector3 gravityA = new Vector3(gravity.x * stickRot.x, gravity.y*(stickRot.y-1),gravity.z*stickRot.z);
+            Debug.Log("1 " + velocity.z);
+
+            Vector3 gravityA = new Vector3(gravity.x * perp.x, gravity.y*(perp.y-1),gravity.z* perp.z);
             velocity += new Vector3(gravityA.x*Time.deltaTime, gravityA.y*Time.deltaTime, gravityA.z*Time.deltaTime);
             gp.power = velocity.z;
 
@@ -79,6 +91,7 @@ public class BollMove : MonoBehaviour
             transform.position += gravityDis; // 중력 가속도
 
             gp.power = gp.power - Time.deltaTime * friction * gp.power;
+            Debug.Log("2green friction "+ velocity.z);
             transform.Rotate(Vector3.right * gp.power);
             
         }
