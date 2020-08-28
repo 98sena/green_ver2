@@ -79,7 +79,5 @@ public class UI_StatsRadarChart : MonoBehaviour
 
         raderMeshCanvasRenderer.SetMesh(mesh);
         raderMeshCanvasRenderer.SetMaterial(radarMaterial, null);
-        //transform.Find("DistanceBar").localScale = new Vector3(1, stats.GetStatAmountNormalized(Stats.Type.Distance));
-        //transform.Find("BFBar").localScale = new Vector3(1, stats.GetStatAmountNormalized(Stats.Type.BF));
     }
 }

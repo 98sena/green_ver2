@@ -21,17 +21,13 @@ public class Stats
     private SingleStat LRStat;
     private SingleStat HitStat;
 
-
     public Stats(float DistanceStatAmount, float BFStatAmount, float LRStatAmount, float HitStatAmount)
     {
         DistanceStat = new SingleStat(DistanceStatAmount);
         BFStat = new SingleStat(BFStatAmount);
         LRStat = new SingleStat(LRStatAmount);
         HitStat = new SingleStat(HitStatAmount);
-
-
     }
-
     private SingleStat GetSingleStat(Type statType)
     {
         switch (statType)
@@ -41,8 +37,6 @@ public class Stats
             case Type.BF: return BFStat;
             case Type.LR: return LRStat;
             case Type.Hit: return HitStat;
-
-
         }
     }
     public void SetStatAmount(Type statType, int statAmount)
@@ -51,18 +45,6 @@ public class Stats
 
         if (OnStatsChanged != null) OnStatsChanged(this, EventArgs.Empty);
     }
-    /*
-    public void IncreaseStatAmount(Type statType)
-    {
-        SetStatAmount(statType, GetStatAmount(statType) + 1);
-
-    }
-
-    public void DecreaseStatAmount(Type statType)
-    {
-        SetStatAmount(statType, GetStatAmount(statType) - 1);
-    }
-    */
     public float GetStatAmount(Type statType)
     {
         return GetSingleStat(statType).GetStatAmount();
@@ -71,9 +53,6 @@ public class Stats
     {
         return GetSingleStat(statType).GetStatAmountNormalized();
     }
-    /*
-     * Represents a Single Stat of any Type
-     * */
     private class SingleStat
     {
         private float stat;
@@ -87,7 +66,6 @@ public class Stats
             stat = Mathf.Clamp(statAmount, STAT_MIN, STAT_MAX); //최대/최소 값 범위 넘어가지 않게
 
         }
-
         public float GetStatAmount()
         {
             return stat;

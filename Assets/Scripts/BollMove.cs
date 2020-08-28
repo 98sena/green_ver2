@@ -18,39 +18,47 @@ public class BollMove : MonoBehaviour
     public PracticeMode pm;
     public bool succeed = false;
     Vector3 newPos;
-    //public Rigidbody ballRB;
     Vector3 velocity = new Vector3(0f, 0f, 0f);
 
     int cnt = 0;
     float friction = 0.7f;
 
-    //public GameObject normGroup;
     public GameObject[]normVecs;
 
     Vector3 gravity = new Vector3(0, 9.8f, 0);
 
     Vector3 side1, side2, perp;
+    public void setVelocity(Vector3 v)
+    {
+        velocity = v;
+
+        velocity = velocity - perp * (Vector3.Dot(perp, velocity));
+    }
+    int count = 0;
     // Start is called before the first frame update
     void Start()
     { 
         rb = transform.gameObject.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
+        count++;
         if(pm.state == Progress.StateLevel.Start && selectButtons.activeSelf)
         {
             tarPos = targetPlace.transform.position;
-            //Debug.Log(tarPos + "              WOOWWWWWWWWWWWWWWWWWWW");
             tan =(tarPos.y - transform.position.y) / (tarPos.z - transform.position.z);
-            //stickRot = Quaternion.Euler(stick.transform.rotation.x,stick.transform.rotation.y,stick.transform.rotation.z);
-            //stickRot = stick.transform.rotation.eulerAngles;
+
             side1 = normVecs[1].transform.position - normVecs[0].transform.position;
             side2 = normVecs[2].transform.position - normVecs[0].transform.position;
             perp = Vector3.Cross(side1, side2);
             perp = perp.normalized;
-            Debug.Log("yayayayayyaayayayayayayay    "+perp);
+
+            Debug.Log("법선벡터 "+perp.ToString("F6"));
+            Debug.Log("0 좌표" + normVecs[0].transform.position.ToString("F6"));
+            Debug.Log("1 좌표" + normVecs[1].transform.position.ToString("F6"));
+            Debug.Log("2 좌표" + normVecs[2].transform.position.ToString("F6"));
+
         }
         if (pm.state == Progress.StateLevel.Roll)
         {
@@ -66,11 +74,6 @@ public class BollMove : MonoBehaviour
             if (gp.power <= 1)
             {
                 gp.getInput = 3; // 끝났다
-                //if (Mathf.Abs(target.x - transform.position.x) < 1.5f && Mathf.Abs(target.z - transform.position.z) < 1.5f)
-                //{
-                //    succeed = true;
-                //    Debug.Log("succceees");
-                //}
                 return;
             }
             cnt++;
@@ -78,19 +81,24 @@ public class BollMove : MonoBehaviour
 
             Debug.Log("0 gppower " + gp.power);
 
-            velocity = new Vector3(velocity.x, velocity.y, gp.power);
+            //velocity = new Vector3(velocity.x, velocity.y, gp.power);
             Debug.Log("1 " + velocity.z);
 
-            Vector3 gravityA = new Vector3(gravity.x * perp.x, gravity.y*(perp.y-1),gravity.z* perp.z);
-            velocity += new Vector3(gravityA.x*Time.deltaTime, gravityA.y*Time.deltaTime, gravityA.z*Time.deltaTime);
-            gp.power = velocity.z;
+            Vector3 gravityA = new Vector3(gravity.y * perp.x, gravity.y*(perp.y-1),gravity.y* perp.z);
 
-            float deltaDis = Time.deltaTime * gp.power;
-            Vector3  gravityDis = new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, velocity.z * Time.deltaTime);
-            transform.position += new Vector3(0, tan*deltaDis, deltaDis) ; // 골프채에 맞아서 앞으로 나아감
-            transform.position += gravityDis; // 중력 가속도
 
-            gp.power = gp.power - Time.deltaTime * friction * gp.power;
+
+            velocity += gravityA * Time.deltaTime;// new Vector3(gravityA.x*Time.deltaTime, gravityA.y*Time.deltaTime, gravityA.z*Time.deltaTime);
+            transform.position += velocity * Time.deltaTime;
+
+            //gp.power = velocity.z;
+
+            //float deltaDis = Time.deltaTime * gp.power;
+            //Vector3  gravityDis = new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, velocity.z * Time.deltaTime);
+            //transform.position += new Vector3(0, tan*deltaDis, deltaDis) ; // 골프채에 맞아서 앞으로 나아감
+            //transform.position += gravityDis; // 중력 가속도
+
+            //gp.power = gp.power - Time.deltaTime * friction * gp.power;
             Debug.Log("2green friction "+ velocity.z);
             transform.Rotate(Vector3.right * gp.power);
             
