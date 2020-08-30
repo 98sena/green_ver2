@@ -26,13 +26,14 @@ public class GetPower : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             //Debug.Log("Ready Checked");
             swingPower();
         }
+        
     }
 
     public void swingPower()
     {
         if (powerCheck)
         {
-            power += 0.5f;
+            power += 0.2f;
             //Debug.Log("power on");
         }
     }
