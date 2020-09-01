@@ -38,8 +38,6 @@ public class PracticeMode : Progress
         {
             selectSliders[i] = selectButtons.transform.GetChild(i).gameObject.GetComponent<Slider>();
         }
-        //selectSliders[1].value = 0.5f;
-        //selectSliders[2].value = 0.5f;
         
     }
 
@@ -48,6 +46,7 @@ public class PracticeMode : Progress
     {
         hitCntObj.text = "" + hitCount;
         practiceCntObj.text = "" + (practiceCount + 1);
+
         run(state);
     }
 
@@ -67,7 +66,6 @@ public class PracticeMode : Progress
             endButtons.SetActive(false);
         }
         ball.transform.GetComponent<Rigidbody>().isKinematic = true;
-        Debug.Log("START STATE");
     }
     public void gotoReady()
     {
@@ -92,16 +90,13 @@ public class PracticeMode : Progress
         }
         if (startButtons.activeSelf)
         {
-            Debug.Log("bye Start");
             startButtons.SetActive(false);
         }
         
-        Debug.Log("ready");
         if (gp.getInput == 2)
         {
             Debug.Log(gp.power);
-
-            //ball.transform.GetComponent<Rigidbody>().isKinematic = false;
+            
             nextState();
         }
     }

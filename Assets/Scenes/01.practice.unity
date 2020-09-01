@@ -2240,6 +2240,7 @@ MonoBehaviour:
   - {fileID: 2016080466}
   - {fileID: 1592104128}
   - {fileID: 937755369}
+  T: 0.4
 --- !u!135 &1027093597
 SphereCollider:
   m_ObjectHideFlags: 0

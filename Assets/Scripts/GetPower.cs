@@ -33,7 +33,7 @@ public class GetPower : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (powerCheck)
         {
-            power += 0.2f;
+            power += 0.4f;
             //Debug.Log("power on");
         }
     }

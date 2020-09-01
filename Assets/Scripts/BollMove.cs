@@ -27,7 +27,7 @@ public class BollMove : MonoBehaviour
 
     Vector3 gravity = new Vector3(0, 9.8f, 0);
     float greenFriction = 0f;
-    float T;
+    public float T = 0.25f;
     Vector3 FrictionA=new Vector3(0, 0, 0);
     Vector3 side1, side2, perp;
     public void setVelocity(Vector3 v)
@@ -41,7 +41,6 @@ public class BollMove : MonoBehaviour
     void Start()
     { 
         rb = transform.gameObject.GetComponent<Rigidbody>();
-        T = 0.25f;
     }
 
     void FixedUpdate()
@@ -57,10 +56,10 @@ public class BollMove : MonoBehaviour
             perp = Vector3.Cross(side1, side2);
             perp = perp.normalized;
 
-            Debug.Log("법선벡터 "+perp.ToString("F6"));
-            Debug.Log("0 좌표" + normVecs[0].transform.position.ToString("F6"));
-            Debug.Log("1 좌표" + normVecs[1].transform.position.ToString("F6"));
-            Debug.Log("2 좌표" + normVecs[2].transform.position.ToString("F6"));
+            //Debug.Log("법선벡터 "+perp.ToString("F6"));
+            //Debug.Log("0 좌표" + normVecs[0].transform.position.ToString("F6"));
+            //Debug.Log("1 좌표" + normVecs[1].transform.position.ToString("F6"));
+            //Debug.Log("2 좌표" + normVecs[2].transform.position.ToString("F6"));
 
         }
         if (pm.state == Progress.StateLevel.Roll)
@@ -72,24 +71,27 @@ public class BollMove : MonoBehaviour
                 gp.getInput = 3; //들어갔다
                 return;
             }
-
-            if (gp.power <= 1)
+            
+            if ((Mathf.Round(velocity.z*1000)*0.001f) <= 1)
             {
                 gp.getInput = 3; // 끝났다
                 return;
             }
             cnt++;
             //Debug.Log("vecs                                                                                       " + perp);
-
+            
             Debug.Log("0 gppower " + gp.power);
 
             //velocity = new Vector3(velocity.x, velocity.y, gp.power);
-            Debug.Log("1 " + velocity.z);
-            greenFriction = 0.3f * (Vector3.Magnitude(velocity) / T) + 0.4f * ((T - Vector3.Magnitude(velocity) / T));
+            //Debug.Log("1 " + velocity.z);
+
+            // 중력
             Vector3 gravityA = new Vector3(gravity.y * perp.x, gravity.y*(perp.y-1),gravity.y* perp.z);
-            
+
+            //마찰력
+            greenFriction = 0.3f * (Vector3.Magnitude(velocity) / T) + 0.4f * ((T - Vector3.Magnitude(velocity) / T));
             FrictionA = perp.y * gravity.y* (velocity / Vector3.Magnitude(velocity))*greenFriction;
-            Debug.Log("가속도 " + gravityA+FrictionA);
+            //Debug.Log("가속도 " + gravityA+FrictionA);
 
             velocity += (gravityA+FrictionA) * Time.deltaTime;// new Vector3(gravityA.x*Time.deltaTime, gravityA.y*Time.deltaTime, gravityA.z*Time.deltaTime);
             transform.position += velocity * Time.deltaTime;
@@ -100,10 +102,11 @@ public class BollMove : MonoBehaviour
             //transform.position += new Vector3(0, tan*deltaDis, deltaDis) ; // 골프채에 맞아서 앞으로 나아감
             //transform.position += gravityDis; // 중력 가속도
 
-            gp.power = gp.power - Time.deltaTime * friction * gp.power;
-            Debug.Log("2green friction "+ velocity.z);
+            //gp.power = gp.power - Time.deltaTime * friction * gp.power;
+            gp.power = (Mathf.Round(velocity.z * 1000) * 0.001f);
+            Debug.Log("2green friction "+ (Mathf.Round(velocity.z * 1000) * 0.001f));
+
             transform.Rotate(Vector3.right * gp.power);
-            
         }
     }
 }
