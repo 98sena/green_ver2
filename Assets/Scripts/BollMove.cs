@@ -30,6 +30,7 @@ public class BollMove : MonoBehaviour
     public float T = 0.25f;
     Vector3 FrictionA=new Vector3(0, 0, 0);
     Vector3 side1, side2, perp;
+    
     public void setVelocity(Vector3 v)
     {
         velocity = v;
@@ -41,6 +42,7 @@ public class BollMove : MonoBehaviour
     void Start()
     { 
         rb = transform.gameObject.GetComponent<Rigidbody>();
+        
     }
 
     void FixedUpdate()

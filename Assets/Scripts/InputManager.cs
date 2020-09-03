@@ -19,8 +19,13 @@ public class InputManager : MonoBehaviour
     public float LR;
     public float BF;
 
+    float angleLR;
+
     void Start()
     {
+        //높이, 밑변
+        angleLR = Mathf.Atan2(1000, 30);
+        Debug.Log("tatatat " + angleLR);
     }
     void Update()
     {
