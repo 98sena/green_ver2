@@ -18,9 +18,11 @@ public class InputManager : MonoBehaviour
     public float curDistance = 0f;
     public float LR;
     public float BF;
-
     float angleLR;
-
+    
+    public PushedButton leftPB;
+    public PushedButton rightPB;
+    Vector3 ballDir;
     void Start()
     {
         //높이, 밑변
@@ -54,4 +56,10 @@ public class InputManager : MonoBehaviour
             BF = slider.value;
         }
     }
+    public void changeDir()
+    {
+        ballDir = new Vector3(golfBall.transform.rotation.x + 0f, golfBall.transform.rotation.y + leftPB.length + rightPB.length, golfBall.transform.rotation.z + 0f);
+        golfBall.transform.rotation = Quaternion.Euler(ballDir);
+    }
+    
 }

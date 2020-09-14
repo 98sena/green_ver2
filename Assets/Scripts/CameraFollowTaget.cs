@@ -9,6 +9,8 @@ public class CameraFollowTaget : MonoBehaviour
     public GetPower gp;
     float offsetX = 0f, offsetY = 2.75f, offsetZ = -10;
 
+    public Transform defaultPos;
+
     Vector3 cameraPos;
 
     // Start is called before the first frame update
@@ -20,13 +22,17 @@ public class CameraFollowTaget : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (pm.state == Progress.StateLevel.Roll)
+        //if (pm.state == Progress.StateLevel.Roll)
+        //{
+        //    cameraPos.x = target.position.x + offsetX;
+        //    cameraPos.y = target.position.y + offsetY;
+        //    cameraPos.z = target.position.z + offsetZ;
+        //    transform.position = cameraPos;
+        //}
+        if(pm.state == Progress.StateLevel.Ready)
         {
-            cameraPos.x = target.position.x + offsetX;
-            cameraPos.y = target.position.y + offsetY;
-            cameraPos.z = target.position.z + offsetZ;
-            transform.position = cameraPos;
+            transform.position = defaultPos.position;
+            transform.rotation = defaultPos.rotation;
         }
-        
     }
 }

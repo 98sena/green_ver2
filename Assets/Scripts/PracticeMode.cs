@@ -154,7 +154,8 @@ public class PracticeMode : Progress
             selectSliders[2].value = 0.5f;
         }
         ball.transform.position = startPos.transform.position;
-        cameraPos.transform.position = startCameraPos.transform.position;
+        ball.transform.rotation = startPos.transform.rotation;
+        //cameraPos.transform.position = startCameraPos.transform.position;
         bm.succeed = false;
     }
 }
