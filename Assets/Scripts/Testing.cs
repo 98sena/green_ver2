@@ -15,7 +15,7 @@ public class Testing : MonoBehaviour
     }
     private void Start()
     {
-        Stats stats = new Stats(ds.ballDistace, ds.BF, ds.LR, ds.hitCount/5.0f);
+        Stats stats = new Stats(ds.ballDistace, ds.BF, ds.LR, ds.hitCount/10.0f);
 
         uiStatsRadarChart.SetStats(stats);
         Debug.Log(uiStatsRadarChart.stats.GetStatAmountNormalized(Stats.Type.Distance));

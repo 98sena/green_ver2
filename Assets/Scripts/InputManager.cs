@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     public GameObject ballPlace;
     public GameObject camPlace;
     float staticDistance = (-29.49f) + (80.0f);
-    public float curDistance = 0f;
+    public float curDistance;
     public float LR;
     public float BF;
     float angleLR;
@@ -25,6 +25,9 @@ public class InputManager : MonoBehaviour
     Vector3 ballDir;
     void Start()
     {
+        curDistance = 1f;
+        LR = 0.5f;
+        BF = 0.5f;
         //높이, 밑변
         angleLR = Mathf.Atan2(1000, 30);
         Debug.Log("tatatat " + angleLR);

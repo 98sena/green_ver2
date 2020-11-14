@@ -45,7 +45,7 @@ public class PracticeMode : Progress
     void Update()
     {
         hitCntObj.text = "" + hitCount;
-        practiceCntObj.text = "" + (practiceCount + 1);
+        //practiceCntObj.text = "" + (practiceCount + 1);
 
         run(state);
     }

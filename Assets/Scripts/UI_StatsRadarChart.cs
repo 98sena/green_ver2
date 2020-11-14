@@ -36,7 +36,7 @@ public class UI_StatsRadarChart : MonoBehaviour
         int[] triangles = new int[3 * 4];
 
         float angleIncrement = 360f / 4;
-        float radarChartSize = 99f-6.5f;
+        float radarChartSize = (99f-6.5f)*1.5f;
 
         Vector3 DistanceVertex = Quaternion.Euler(0, 0, -angleIncrement * 0) * Vector3.up * radarChartSize * stats.GetStatAmountNormalized(Stats.Type.Distance);
         int DistanceVertexIndex = 1;

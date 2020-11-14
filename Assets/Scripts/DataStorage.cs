@@ -18,7 +18,10 @@ public class DataStorage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ballDistace = 1f;
+        LR = 0.5f;
+        BF = 0.5f;
+        hitCount = 0;
     }
 
     // Update is called once per frame

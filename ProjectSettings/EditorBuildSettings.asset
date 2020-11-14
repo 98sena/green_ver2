@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/00.home.unity
     guid: 0553f3ccfa40f7b4891bb0ce4eb518a8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/01.game.unity
     guid: c0514dd70cffb3041a6c0188c4ad505c
   - enabled: 1
@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/01.statistics.unity
     guid: 780585b31b7e7234a9e5181e4c8291ba
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/01.settings.unity
     guid: 2b7ee46aae981564dba8def57afc2979
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/02.PracticeEnd.unity
     guid: da799d2b5abe9a4409db76aeec1cd21f
   m_configObjects: {}
