@@ -8,7 +8,8 @@ public class GageControl : MonoBehaviour
     public GetPower gp;
     public GameObject gage;
     RectTransform rectTran;
-    
+    public PracticeMode pm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,14 @@ public class GageControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (float)gp.power*3f);
+        if (gp.power < 50)
+        {
+            rectTran.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (float)gp.power*5f);
+        }
+        if (pm.state == Progress.StateLevel.Ready)
+        {
+                Debug.Log("gp power " + gp.power);
+        }
+        
     }
 }

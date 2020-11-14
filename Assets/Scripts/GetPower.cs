@@ -21,7 +21,7 @@ public class GetPower : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Update is called once per frame
     void Update()
     {
-        if (pm.state == Progress.StateLevel.Ready)
+        if (pm.state == Progress.StateLevel.Ready&&power<50)
         {
             //Debug.Log("Ready Checked");
             swingPower();

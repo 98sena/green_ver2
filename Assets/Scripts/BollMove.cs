@@ -84,9 +84,14 @@ public class BollMove : MonoBehaviour
 
             //마찰력
             greenFriction = 0.3f * (Vector3.Magnitude(velocity) / T) + 0.4f * ((T - Vector3.Magnitude(velocity) / T));
-            FrictionA = perp.y * gravity.y* (velocity / Vector3.Magnitude(velocity))*greenFriction;
+            FrictionA = perp.y * gravity.y* (velocity / Vector3.Magnitude(velocity))*greenFriction*0.3f;
 
             velocity += (gravityA+FrictionA) * Time.deltaTime;
+            if (pm.state == Progress.StateLevel.Roll)
+            {
+                Debug.Log("Velocity "+velocity);
+            }
+            
             //transform.position += velocity * Time.deltaTime;
             transform.Translate(velocity * Time.deltaTime); // local 좌표로 이동
             gp.power = (Mathf.Round(velocity.z * 1000) * 0.001f);
